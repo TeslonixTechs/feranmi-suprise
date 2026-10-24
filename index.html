@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10090c">
+    <meta name="description" content="A little birthday surprise, made just for you.">
+    <title>A Birthday Surprise</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="experience" id="experience">
+      <div class="ambient-glow" aria-hidden="true"></div>
+      <video class="memory-backdrop" id="memory-backdrop" muted loop playsinline aria-hidden="true"></video>
+      <div class="backdrop-wash" aria-hidden="true"></div>
+
+      <div class="cube-stage" id="cube-stage" aria-hidden="true"></div>
+      <div class="impact-flash" id="impact-flash" aria-hidden="true"></div>
+      <div class="shockwave" id="shockwave" aria-hidden="true"></div>
+      <div class="particle-field" id="particle-field" aria-hidden="true"></div>
+
+      <section class="opening" id="opening" aria-labelledby="opening-title">
+        <p class="eyebrow">A MOMENT MADE JUST FOR YOU</p>
+        <h1 id="opening-title">Something lovely<br>is on its way.</h1>
+        <button class="begin-button" id="begin-button" type="button">
+          <span>Reveal the Surprise</span>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <p class="opening-note">Turn up your sound for a little extra magic</p>
+      </section>
+
+      <section class="reveal" id="reveal" aria-labelledby="birthday-title" hidden>
+        <div class="portrait-frame">
+          <div class="portrait-glow" aria-hidden="true"></div>
+          <img class="birthday-photo" id="birthday-photo" alt="Birthday celebrant">
+          <div class="photo-fallback" id="photo-fallback" hidden>
+            <span aria-hidden="true">✦</span>
+            <p>Your photo will appear here.<br>Update the picture path in <code>script.js</code>.</p>
+          </div>
+          <span class="frame-sparkle sparkle-one" aria-hidden="true">✦</span>
+          <span class="frame-sparkle sparkle-two" aria-hidden="true">✧</span>
+        </div>
+
+        <div class="birthday-copy">
+          <p class="eyebrow reveal-eyebrow">TODAY IS ALL ABOUT YOU</p>
+          <h2 id="birthday-title"></h2>
+          <p class="birthday-message" id="birthday-message"></p>
+        </div>
+
+        <div class="music-panel" id="music-panel" aria-label="Birthday music controls" hidden>
+          <p class="music-status" id="music-status" aria-live="polite"></p>
+          <div class="music-controls">
+            <button class="music-button music-primary" id="music-start" type="button" hidden>
+              Play Birthday Music
+            </button>
+            <button class="music-button music-toggle" id="music-toggle" type="button" aria-label="Pause birthday music">
+              <span class="play-icon" aria-hidden="true">Ⅱ</span>
+              <span id="music-toggle-label">Pause</span>
+            </button>
+            <label class="volume-control" for="music-volume">
+              <span aria-hidden="true">♪</span>
+              <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.72" aria-label="Music volume">
+            </label>
+          </div>
+        </div>
+
+        <button class="replay-button" id="replay-button" type="button">
+          <span aria-hidden="true">↺</span> Replay Animation
+        </button>
+      </section>
+
+      <audio id="birthday-audio" preload="none"></audio>
+      <audio id="impact-audio" preload="none"></audio>
+    </main>
+  </body>
+</html>
