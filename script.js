@@ -1,6 +1,6 @@
 // Personalize these values to make the surprise your own.
 const CONFIG = {
-  birthdayName: "Your Name",
+  birthdayName: "Feranmi",
   birthdayMessage:
     "Wishing you a day filled with laughter, little joys, and everything that makes you happiest. May the year ahead bring you many beautiful moments.",
   picturePath: "assets/Snapchat-2022891378.jpg",
@@ -69,10 +69,13 @@ function createCube(index) {
   orbit.style.setProperty("--left", `${8 + Math.random() * 84}%`);
   orbit.style.setProperty("--top", `${9 + Math.random() * 82}%`);
   cube.className = "cube";
-  cube.style.setProperty("--duration", `${3.4 + Math.random() * 4.6}s`);
+  const floatDuration = 3.4 + Math.random() * 4.6;
+  cube.style.setProperty("--duration", `${floatDuration}s`);
+  cube.style.setProperty("--reveal-duration", `${floatDuration * 1.8}s`);
   cube.style.setProperty("--delay", `${-Math.random() * 4}s`);
-  cube.style.setProperty("--float-x", `${-20 + Math.random() * 40}px`);
-  cube.style.setProperty("--float-y", `${-25 + Math.random() * 50}px`);
+  const floatDistance = smallOrLowPower ? 34 : 72;
+  cube.style.setProperty("--float-x", `${-floatDistance + Math.random() * floatDistance * 2}px`);
+  cube.style.setProperty("--float-y", `${-floatDistance + Math.random() * floatDistance * 2}px`);
   cube.style.setProperty("--rotate-x", `${Math.random() * 180}deg`);
   cube.style.setProperty("--rotate-y", `${Math.random() * 180}deg`);
   cube.style.setProperty("--rotate-z", `${Math.random() * 180}deg`);
@@ -199,6 +202,12 @@ function attemptMusicPlayback() {
 
 function prepareReveal() {
   experience.classList.remove("is-accelerating", "is-colliding", "is-impact", "is-scattered");
+  cubeOrbits.forEach((orbit) => {
+    orbit.style.transition = "none";
+    orbit.style.transitionDelay = "0ms";
+    orbit.style.transform = "translate(-50%, -50%)";
+  });
+  void cubeStage.offsetWidth;
   experience.classList.add("is-revealed");
   reveal.hidden = false;
   musicPanel.hidden = false;

@@ -26,7 +26,7 @@ body {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 button,
@@ -101,6 +101,7 @@ button {
 
 .opening,
 .reveal {
+  grid-area: 1 / 1;
   position: relative;
   z-index: 2;
   width: min(100%, 620px);
@@ -272,6 +273,15 @@ button {
 
 .is-scattered .cube {
   animation-play-state: paused;
+}
+
+.is-revealed .cube-orbit {
+  opacity: 0.42;
+  transition: opacity 1.4s ease;
+}
+
+.is-revealed .cube {
+  animation-duration: var(--reveal-duration);
 }
 
 @keyframes cube-drift {
