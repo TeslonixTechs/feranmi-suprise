@@ -23,7 +23,8 @@ const birthdayTitle = document.querySelector("#birthday-title");
 const birthdayMessage = document.querySelector("#birthday-message");
 const birthdayPhoto = document.querySelector("#birthday-photo");
 const photoFallback = document.querySelector("#photo-fallback");
-const memoryBackdrop = document.querySelector("#memory-backdrop");
+const birthdayVideo = document.querySelector("#birthday-video");
+const videoFallback = document.querySelector("#video-fallback");
 const birthdayAudio = document.querySelector("#birthday-audio");
 const impactAudio = document.querySelector("#impact-audio");
 const musicPanel = document.querySelector("#music-panel");
@@ -213,9 +214,8 @@ function prepareReveal() {
   musicPanel.hidden = false;
   sequenceRunning = false;
 
-  memoryBackdrop.play().catch((error) => {
-    console.warn("The optional birthday video could not be played.", error);
-    memoryBackdrop.hidden = true;
+  birthdayVideo.play().catch((error) => {
+    console.warn("Birthday video autoplay was unavailable; use the video controls to play it.", error);
   });
 
   if (!musicAttempted) {
@@ -300,7 +300,16 @@ if (CONFIG.picturePath) {
 }
 
 if (CONFIG.videoPath) {
-  memoryBackdrop.src = CONFIG.videoPath;
+  birthdayVideo.src = CONFIG.videoPath;
+  if (CONFIG.picturePath) birthdayVideo.poster = CONFIG.picturePath;
+  birthdayVideo.addEventListener("error", () => {
+    birthdayVideo.hidden = true;
+    videoFallback.hidden = false;
+    console.warn("Birthday video could not be loaded. Check the configured video path.");
+  });
+} else {
+  birthdayVideo.hidden = true;
+  videoFallback.hidden = false;
 }
 
 if (CONFIG.musicPath) {
@@ -320,7 +329,6 @@ beginButton.addEventListener("click", beginSequence);
 replayButton.addEventListener("click", () => {
   if (sequenceRunning) return;
   clearSequenceTimers();
-  memoryBackdrop.pause();
   resetCubesForReplay();
   beginSequence();
 });

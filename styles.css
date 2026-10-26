@@ -53,8 +53,6 @@ button {
 }
 
 .ambient-glow,
-.backdrop-wash,
-.memory-backdrop,
 .cube-stage,
 .impact-flash,
 .shockwave,
@@ -69,34 +67,6 @@ button {
   background:
     radial-gradient(ellipse at 50% 100%, rgba(112, 29, 49, 0.16), transparent 62%),
     radial-gradient(ellipse at 50% 0%, rgba(87, 28, 44, 0.12), transparent 48%);
-}
-
-.memory-backdrop {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  filter: blur(14px) saturate(0.72);
-  transform: scale(1.08);
-  transition: opacity 1.8s ease;
-}
-
-.backdrop-wash {
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(16, 9, 12, 0.52), rgba(16, 9, 12, 0.78)),
-    radial-gradient(ellipse at center, rgba(16, 9, 12, 0.1), #10090c 82%);
-  opacity: 0;
-  transition: opacity 1.6s ease;
-}
-
-.is-revealed .memory-backdrop {
-  opacity: 0.2;
-}
-
-.is-revealed .backdrop-wash {
-  opacity: 1;
 }
 
 .opening,
@@ -372,6 +342,7 @@ button {
 
 .reveal[hidden],
 .photo-fallback[hidden],
+.video-fallback[hidden],
 .music-panel[hidden],
 .music-button[hidden] {
   display: none;
@@ -386,11 +357,19 @@ button {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.portrait-frame {
+.memory-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 24px);
+  margin: 0 auto 26px;
+}
+
+.portrait-frame,
+.memory-video-frame {
   position: relative;
   width: clamp(160px, 25vh, 240px);
   aspect-ratio: 0.82;
-  margin: 0 auto 26px;
   padding: 7px;
   border: 1px solid rgba(232, 199, 139, 0.74);
   border-radius: 48% 48% 43% 43% / 42% 42% 38% 38%;
@@ -416,9 +395,13 @@ button {
 }
 
 .birthday-photo,
-.photo-fallback {
-  width: 100%;
-  height: 100%;
+.photo-fallback,
+.birthday-video,
+.video-fallback {
+  position: absolute;
+  inset: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
   overflow: hidden;
   border-radius: inherit;
 }
@@ -442,6 +425,37 @@ button {
   color: var(--cream);
   font-size: 0.8rem;
   line-height: 1.6;
+}
+
+.birthday-video {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  background: #1c1014;
+}
+
+.video-fallback {
+  display: grid;
+  place-content: center;
+  padding: 12px;
+  background: linear-gradient(145deg, #4c1b2a, #1c1014);
+  color: var(--cream);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.video-fallback span {
+  color: var(--gold);
+  font-size: 1.6rem;
+}
+
+.video-fallback p {
+  margin: 8px 0 0;
+}
+
+.video-fallback code {
+  color: var(--gold);
 }
 
 .photo-fallback span {
@@ -596,8 +610,12 @@ button {
 }
 
 @media (max-height: 700px) and (min-width: 600px) {
-  .portrait-frame {
+  .portrait-frame,
+  .memory-video-frame {
     width: clamp(125px, 23vh, 165px);
+  }
+
+  .memory-gallery {
     margin-bottom: 16px;
   }
 
@@ -633,8 +651,13 @@ button {
     font-size: clamp(2.7rem, 12vw, 4rem);
   }
 
-  .portrait-frame {
-    width: clamp(145px, 22vh, 195px);
+  .portrait-frame,
+  .memory-video-frame {
+    width: clamp(120px, 36vw, 170px);
+  }
+
+  .memory-gallery {
+    gap: clamp(12px, 4vw, 20px);
     margin-bottom: 21px;
   }
 
@@ -669,8 +692,12 @@ button {
     padding-bottom: 16px;
   }
 
-  .portrait-frame {
-    width: clamp(118px, 20vh, 148px);
+  .portrait-frame,
+  .memory-video-frame {
+    width: clamp(110px, 17vh, 140px);
+  }
+
+  .memory-gallery {
     margin-bottom: 12px;
   }
 

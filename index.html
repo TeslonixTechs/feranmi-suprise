@@ -12,8 +12,6 @@
   <body>
     <main class="experience" id="experience">
       <div class="ambient-glow" aria-hidden="true"></div>
-      <video class="memory-backdrop" id="memory-backdrop" muted loop playsinline aria-hidden="true"></video>
-      <div class="backdrop-wash" aria-hidden="true"></div>
 
       <div class="cube-stage" id="cube-stage" aria-hidden="true"></div>
       <div class="impact-flash" id="impact-flash" aria-hidden="true"></div>
@@ -31,15 +29,25 @@
       </section>
 
       <section class="reveal" id="reveal" aria-labelledby="birthday-title" hidden>
-        <div class="portrait-frame">
-          <div class="portrait-glow" aria-hidden="true"></div>
-          <img class="birthday-photo" id="birthday-photo" alt="Birthday celebrant">
-          <div class="photo-fallback" id="photo-fallback" hidden>
-            <span aria-hidden="true">✦</span>
-            <p>Your photo will appear here.<br>Update the picture path in <code>script.js</code>.</p>
+        <div class="memory-gallery">
+          <div class="portrait-frame">
+            <div class="portrait-glow" aria-hidden="true"></div>
+            <img class="birthday-photo" id="birthday-photo" alt="Birthday celebrant">
+            <div class="photo-fallback" id="photo-fallback" hidden>
+              <span aria-hidden="true">✦</span>
+              <p>Your photo will appear here.<br>Update the picture path in <code>script.js</code>.</p>
+            </div>
+            <span class="frame-sparkle sparkle-one" aria-hidden="true">✦</span>
+            <span class="frame-sparkle sparkle-two" aria-hidden="true">✧</span>
           </div>
-          <span class="frame-sparkle sparkle-one" aria-hidden="true">✦</span>
-          <span class="frame-sparkle sparkle-two" aria-hidden="true">✧</span>
+          <div class="memory-video-frame">
+            <div class="portrait-glow" aria-hidden="true"></div>
+            <video class="birthday-video" id="birthday-video" muted loop playsinline controls preload="metadata" aria-label="Birthday video"></video>
+            <div class="video-fallback" id="video-fallback" hidden>
+              <span aria-hidden="true">▶</span>
+              <p>Your video will appear here.<br>Check the video path in <code>script.js</code>.</p>
+            </div>
+          </div>
         </div>
 
         <div class="birthday-copy">
